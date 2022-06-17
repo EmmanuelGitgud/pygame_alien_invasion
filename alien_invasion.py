@@ -1,6 +1,7 @@
 import sys
 import pygame
 from settings import Settings
+from ship import Ship
 
 class AlienInvasion:
     """game assets and behavior"""
@@ -10,24 +11,33 @@ class AlienInvasion:
 
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
+
         pygame.display.set_caption("Alien Invasion")
 
+        self.ship = Ship(self)
+
         # set bg color
-        self.bg_color = (230,230,230)
+        self.bg_color = self.settings.bg_color
 
     def run_game(self):
         """main loop of the game"""
         while True:
-            #mouse and keyboard event listener
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            self._check_events()
+            self._update_screen()
+            
+    def _check_events(self):
+        """keypreses"""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
 
-            #redraw screen each pass
-            self.screen.fill(self.settings.bg_color)
+    def _update_screen(self):
+        """updates screen"""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
 
-            #display latest frame
-            pygame.display.flip()
+        #display latest frame
+        pygame.display.flip()
 
 if __name__ == '__main__':
     #run the game instance
