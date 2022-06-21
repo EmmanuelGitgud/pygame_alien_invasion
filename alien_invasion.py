@@ -11,10 +11,10 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
 
-        # self.screen = pygame.display.set_mode(
-        #     (self.settings.screen_width, self.settings.screen_height))
+        self.screen = pygame.display.set_mode(
+            (self.settings.screen_width, self.settings.screen_height))
 
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().width
 
@@ -29,9 +29,9 @@ class AlienInvasion:
         """main loop of the game"""
         while True:
             self._check_events()
-            self._update_screen()
             self.ship.update()
             self.bullets.update()
+            self._update_screen()
 
             for bullet in self.bullets.copy():
                 if bullet.rect.bottom <= 0:
