@@ -1,3 +1,4 @@
+from os import system
 import sys
 import pygame
 from settings import Settings
@@ -41,6 +42,8 @@ class AlienInvasion:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
+        elif event.key == pygame.K_q:
+            sys.exit()
 
     def _check_keyup_events(self, event):
         """keyup"""
