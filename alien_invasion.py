@@ -77,6 +77,10 @@ class AlienInvasion:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
+    def _create_fleet(self):
+        """make fleet of aliens"""
+        alien = Alien(self)
+
     def _update_screen(self):
         """updates screen"""
         self.screen.fill(self.settings.bg_color)
